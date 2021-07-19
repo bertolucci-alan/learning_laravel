@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Site\BlogController;
+use App\Http\Controllers\Site\CategoryController;
+use App\Http\Controllers\Site\ContactController;
+use App\Http\Controllers\site\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +16,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//criando rota do tipo get
+Route::namespace('App')->group(function () {
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('/', [HomeController::class, '__invoke']);
+
+    Route::get('/produtos', [CategoryController::class, 'index']);
+    Route::get('/produtos/{slug}', [CategoryController::class, 'show']);
+
+    Route::get('/blog', [BlogController::class, '__invoke']);
+
+    Route::view('/sobre', 'site.about.index');
+
+    Route::get('/contato', [ContactController::class, 'index']);
+    Route::post('/contato', [ContactController::class, 'form']);
 });
