@@ -29,7 +29,7 @@
     <!-- Links & Scripts -->
     <link rel="stylesheet" href="https://use.typekit.net/nbc5nyh.css">
     <link rel="stylesheet" href="{{asset('css/app.css')}}" />
-    <!-- @toastr_css -->
+    @toastr_css
 
 
     <link id="favicon" rel="shortcut icon" href="{{asset('images/Frame.svg')}}" sizes="16x16" type="image/svg">
