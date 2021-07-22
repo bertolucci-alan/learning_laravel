@@ -10,35 +10,33 @@
 
             <form class="contact__form" action="{{route('site.contact.form')}}" method="POST">
                 @csrf
-                @if(session('success'))
-                <div>
-                    {{session('message')}}
-                </div>
+                @if(session('sucess'))
+                <div>{{session('message')}}</div>
                 @endif
                 <div>
                 </div>
                 <label for="name">Nome completo</label>
-                <input id="name" name="name" type="text" tabindex="1" placeholder="Ex: José da Silva" autofocus
+                <input id="name" name="name" type="text" tabindex="1" placeholder="Ex: Alanzin" autofocus
                     value="{{old('name')}}">
                 @error('name')
-                <div>{{ $message }}</div>
+                <div style="color: red;">{{$message}}</div>
                 @enderror
 
                 <label for="email">Email</label>
-                <input id="email" name="email" type="text" tabindex="2" placeholder="Ex: email@email.com.br"
+                <input id="email" name="email" type="text" tabindex="2" placeholder="Ex: jeremias@email.com.br"
                     value="{{old('email')}}">
                 @error('email')
-                <div>{{ $message }}</div>
+                <div style="color: red;">{{$message}}</div>
                 @enderror
 
                 <label for="message">Mensagem</label>
                 <textarea id="message" name="message" tabindex="3" cols="20" rows="4"
                     placeholder="Digite aqui...">{{old('message')}}</textarea>
                 @error('message')
-                <div>{{ $message }}</div>
+                <div style="color: red;">{{$message}}</div>
                 @enderror
 
-                <button class="button button_primary" type="submit">Enviar mensagem</button>
+                <button class="button button_primary" type="submit" name="sendEmail">Enviar mensagem</button>
             </form>
 
             <div class="contact__infos">

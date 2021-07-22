@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContactFormRequest;
 use App\Models\Contact;
 use App\Notifications\NewContact;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 
 class ContactController extends Controller
@@ -20,20 +21,18 @@ class ContactController extends Controller
         return view('site.contact.index');
     }
 
-    public function form(Request $request)
+    public function form(ContactFormRequest $request)
     {
-        //salvando no banco de dados 
+        // dd($request->all());
         $contact = Contact::create($request->all());
+        Notification::route('mail', config('mail.from.address'))
+            ->notify(new NewContact($contact));
+
+        // ddd($request->all());
+        toastr()->success('E-mail enviado com sucesso!');
 
 
-        //passando uma collection para o envio de email
-        Notification::route('mail', config('mail.from.address'))->notify(new NewContact($contact));
 
-        // Notification::route('mail', 'taylor@example.com')
-        //     ->route('nexmo', '5555555555')
-        //     ->route('slack', 'https://hooks.slack.com/services/...')
-        //     ->notify(new InvoicePaid($invoice));
-
-        ddd($contact);
+        return back();
     }
 }
