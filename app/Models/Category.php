@@ -15,6 +15,7 @@ class Category extends Model
      */
     protected $fillabe = [
         'name',
+        'description',
         'image'
     ];
 

@@ -33,9 +33,9 @@ class ContactFomrTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/contato')
-                ->type('name', 'alanzinho')
+                ->type('name', 'Alan')
                 ->type('email', 'alan@gmail.com')
-                ->type('message', 'olá alan, enviando email teste')
+                ->type('message', 'olá Alan, enviando email teste')
                 ->press('sendEmail')
                 ->assertPathIs('/contato')
                 ->assertSee('E-mail enviado com sucesso!');

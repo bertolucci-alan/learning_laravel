@@ -8,12 +8,13 @@
     <div class="pattern__header"></div>
 </header>
 <!-- Products list -->
+
 <div class="gray-background">
-    <section class="products__cultivation__category main-wrapper">
+    <section class="productscultivationcategory main-wrapper">
         @foreach($categories as $category)
-        <article class="card__product">
+        <article class="cardproduct">
             <a href="{{route('site.products.category', ['category' => $category])}}">
-                <div class="card__cover">
+                <div class="cardcover">
                     <img src="{{asset($category->image)}}">
                 </div>
                 <header class="card__product-header">
@@ -25,4 +26,10 @@
         @endforeach
     </section>
 </div>
+
+
+
+
+
+
 @endsection

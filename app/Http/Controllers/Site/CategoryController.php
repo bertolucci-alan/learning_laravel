@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -14,17 +16,23 @@ class CategoryController extends Controller
      */
     public function index()
     {
+
+
         //retornar uma view
-        return view('site.category.index');
+        return view('site.category.index', [
+            'categories' => Category::all(),
+            'categories_count' => DB::table('categories')->count(),
+        ]);
     }
 
 
     /**  
      * @param  $slug
      */
-    public function show($slug)
+    public function show(Category $category)
     {
+        // dd($category->load('products'));
         //retornando view com o slug específico:
-        return view('site.category.show', ['slug' => $slug]);
+        return view('site.category.show', ['category' => $category->load('products')]);
     }
 }
